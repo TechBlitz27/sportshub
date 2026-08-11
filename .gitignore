@@ -1,0 +1,17 @@
+# Python environment and cache (Crucial for your current structure)
+__pycache__/
+.venv/
+env/
+venv/
+
+# Secrets and environment variables (Good practice for APIs)
+.env
+.env.local
+
+# IDE and OS specific files
+.vscode/
+.DS_Store
+Thumbs.db
+docs/
+# Optional: Ignore your mock data if it gets too large
+# data.json

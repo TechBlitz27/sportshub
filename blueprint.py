@@ -10,7 +10,7 @@ class PlayerCreate(BaseModel):
   bowling_style: Optional[str]=None
 
 class PlayerUpdate(BaseModel):
-  country: Optional[str]
+  new_country: str
 
 class PlayerReplace(BaseModel):
   pass

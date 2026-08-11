@@ -1,4 +1,3 @@
-from db import get_db as db
 
 def get_teams():
   teams=["India", "Australia", "Bangladesh", "New Zealand", "South Africa","England","Ireland","SriLanka" ,"WestINdies" ,"Afghanistan"]

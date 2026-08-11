@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from players import get_players as gt_plys ,get_player as gt_ply, add_players, patch_players
-from blueprint import PlayerCreate
+from blueprint import PlayerCreate,PlayerUpdate
 from teams import get_teams as teams
 from teams import get_team_players as tm_plys
 from fastapi.responses import JSONResponse
@@ -33,8 +33,8 @@ def create_player(player:PlayerCreate):
     return JSONResponse(status_code=201, content={"Message":"Invalid Request"})
     
 @app.patch("/players/{player_id}")
-def update_player(player_id:int,country:str):
-    patch_players(player_id,country)
+def update_player(player_id:int,player:PlayerUpdate):
+    patch_players(player_id,player)
 
 
 

@@ -56,5 +56,13 @@ def add_players(player:PlayerCreate):
   
 
 
-def patch_players(id,new_country):
-  pass
+def patch_players(player_id:int,player:PlayerUpdate):
+  data=utils.load_info()
+  # new_country:str = None
+  for p in data:
+    if p["player_id"]==player_id:
+      p["player_country"]=player.new_country
+      break
+  else:
+    raise HTTPException(status_code=404, detail="INVALID REQUEST")    
+  utils.save_player_data(data)

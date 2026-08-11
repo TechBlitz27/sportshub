@@ -273,6 +273,62 @@ test(
     r
 )
 
+# --------------------------------------------------
+# PATCH missing required field
+# --------------------------------------------------
+PATCH_ID = 12
+
+patch_data = {
+    "new_country": "New Zealand"
+}
+
+r = requests.patch(
+    f"{BASE_URL}/players/{PATCH_ID}",
+    json=patch_data
+)
+
+test(
+    "PATCH update player country",
+    r.status_code == 200,
+    r
+)
+
+# --------------------------------------------------
+# GET patched player
+# --------------------------------------------------
+
+r = requests.get(
+    f"{BASE_URL}/players/{PATCH_ID}"
+)
+
+patch_verify = (
+    r.status_code == 200
+    and r.json()["player_country"] == "New Zealand"
+)
+
+test(
+    "PATCH verification",
+    patch_verify,
+    r
+)
+
+
+# --------------------------------------------------
+# PATCH nonexistent player
+# --------------------------------------------------
+
+r = requests.patch(
+    f"{BASE_URL}/players/999999",
+    json={"new_country": "New Zealand"}
+)
+
+test(
+    "PATCH nonexistent player -> 404",
+    r.status_code == 404,
+    r
+)
+
+
 
 # --------------------------------------------------
 # SUMMARY

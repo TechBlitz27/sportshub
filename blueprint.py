@@ -13,7 +13,11 @@ class PlayerUpdate(BaseModel):
   new_country: str
 
 class PlayerReplace(BaseModel):
-  pass
+  name: str
+  player_country: str
+  role: str
+  batting_style: Optional[str]=None
+  bowling_style: Optional[str]=None
 
 class PlayerDelete(BaseModel):
   pass

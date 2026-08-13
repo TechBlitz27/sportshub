@@ -66,3 +66,39 @@ def patch_players(player_id:int,player:PlayerUpdate):
   else:
     raise HTTPException(status_code=404, detail="INVALID REQUEST")    
   utils.save_player_data(data)
+
+def replace_player(player_id:int,player:PlayerReplace):
+  data=utils.load_info()
+  for p in data:
+    if p["player_id"]==player_id:
+      #p=player.model_dump()
+      #data.index(p)=player
+      # p[player_id]=player_id
+      
+      idx=data.index(p)
+      # data[idx]=player->incorrect
+      
+      
+      # data[idx]=player.model_dump()
+      #p_dict=player.model_dump()
+      # p_dict={"player_id":player_id}
+      # data[idx]=p_dict
+      
+      p_dict=player.model_dump()
+      p_dict["player_id"]=player_id
+      data[idx]=p_dict
+      #data["player_id"]=player
+      # #break #forgot data.append
+  # else:
+  #   raise HTTPException(status_code=400, detail="ERROR")
+    #data.append(p)->will add new_player not replace
+  utils.save_player_data(data)
+
+def rm_players(player_id:int):
+  data=utils.load_info()
+  for p in data:
+    if p["player_id"]==player_id:
+      idx=data.index(p)
+
+      del data[idx]
+  utils.save_player_data(data) 
